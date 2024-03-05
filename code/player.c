@@ -51,6 +51,37 @@ void player_increment_score(FishPlayer *player) {
     player->info->score++;
 }
 
+int save_player_data(FishPlayer *player, cstring filename) {
+    FILE *file = fopen(filename, "wb");
+    if (file == NULL) {
+        perror("Error opening file for writing");
+        return 0;
+    }
+
+    // Write player data to the file
+    fwrite(player, sizeof(FishPlayer), 1, file);
+
+    fclose(file);
+    return 1;
+}
+
+FishPlayer *load_player_data(cstring filename) {
+    FILE *file = fopen(filename, "rb");
+    if (file == NULL) {
+        perror("Error opening file for reading");
+        return NULL;
+    }
+
+    // Allocate memory for the loaded player
+    FishPlayer *loadedPlayer = malloc(sizeof(FishPlayer));
+
+    // Read player data from the file
+    fread(loadedPlayer, sizeof(FishPlayer), 1, file);
+
+    fclose(file);
+    return loadedPlayer;
+}
+
 // Function to destroy a FishPlayer and free allocated memory
 void player_destroy(FishPlayer *player) {
     free(player->info);
