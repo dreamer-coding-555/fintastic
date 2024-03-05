@@ -54,6 +54,8 @@ PlayerMove *player_get_move(FishPlayer *player);
 PlayerType player_get_type(FishPlayer *player);
 int player_get_score(FishPlayer *player);
 void player_increment_score(FishPlayer *player);
+int save_player_data(FishPlayer *player, cstring filename);
+FishPlayer *load_player_data(cstring filename);
 void player_destroy(FishPlayer *player);
 
 #ifdef __cplusplus
