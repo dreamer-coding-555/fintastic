@@ -53,7 +53,7 @@ void player_increment_score(FishPlayer *player) {
 
 int save_player_data(FishPlayer *player, cstring filename) {
     cstream io;
-    fscl_stream_open(io.file, filename, "wb");
+    fscl_stream_open(io, filename, "wb");
     if (io.file == cnullptr) {
         fscl_error_set(FSCL_CERROR_MEDIA_OPEN_FAILED);
         fscl_console_err("%s", fscl_error_what());
@@ -69,7 +69,7 @@ int save_player_data(FishPlayer *player, cstring filename) {
 
 FishPlayer *load_player_data(cstring filename) {
     cstream io;
-    fscl_stream_open(io.file, filename, "rb");
+    fscl_stream_open(io, filename, "rb");
     if (io.file == cnullptr) {
         fscl_error_set(FSCL_CERROR_MEDIA_OPEN_FAILED);
         fscl_console_err("%s", fscl_error_what());
@@ -80,9 +80,9 @@ FishPlayer *load_player_data(cstring filename) {
     FishPlayer *loadedPlayer = malloc(sizeof(FishPlayer));
 
     // Read player data from the file
-    fscl_stream_read(io, loadedPlayer, sizeof(FishPlayer), 1);
+    fscl_stream_read(&io, loadedPlayer, sizeof(FishPlayer), 1);
 
-    fscl_stream_close(&file);
+    fscl_stream_close(io);
     return loadedPlayer;
 }
 
