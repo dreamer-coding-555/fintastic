@@ -1,5 +1,5 @@
 dir = include_directories('.')
-code = files('app.c')
+code = files('app.c', 'player.c')
 
 executable('fintastic',
     sources: ['main.c', code],
