@@ -13,6 +13,7 @@ Description:
 #include <fossil/xtest.h>   // basic test tools
 
 XTEST_EXTERN_POOL(basic_group);
+XTEST_EXTERN_POOL(player_group);
 
 //
 // XUNIT-RUNNER: running test groups from test files
@@ -20,7 +21,8 @@ XTEST_EXTERN_POOL(basic_group);
 int main(int argc, char **argv) {
     XTEST_CREATE(argc, argv);
 
-    XTEST_IMPORT_POOL(basic_group);
+    XTEST_IMPORT_POOL(basic_group );
+    XTEST_IMPORT_POOL(player_group);
 
     return XTEST_ERASE();
 } // end of func
