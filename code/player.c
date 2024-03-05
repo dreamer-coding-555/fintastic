@@ -53,14 +53,15 @@ void player_increment_score(FishPlayer *player) {
 
 int save_player_data(FishPlayer *player, cstring filename) {
     cstream io;
-    fscl_stream_open(&io.stream, filename, "wb");
-    if (file == NULL) {
-        perror("Error opening file for writing");
+    fscl_stream_open(&io.file, filename, "wb");
+    if (io.file == cnullptr) {
+        fscl_error_set(FSCL_CERROR_MEDIA_OPEN_FAILED);
+        fscl_console_err("%s", fscl_error_what());
         return 0;
     }
 
     // Write player data to the file
-    fwrite(player, sizeof(FishPlayer), 1, file);
+    fscl_stream_write(&io, player, sizeof(FishPlayer), 1, file);
 
     fscl_stream_close(&io);
     return 1;
@@ -68,17 +69,18 @@ int save_player_data(FishPlayer *player, cstring filename) {
 
 FishPlayer *load_player_data(cstring filename) {
     cstream io;
-    fscl_stream_open(&io.stream, filename, "rb");
-    if (file == NULL) {
-        perror("Error opening file for reading");
-        return NULL;
+    fscl_stream_open(&io.file, filename, "rb");
+    if (io.file == cnullptr) {
+        fscl_error_set(FSCL_CERROR_MEDIA_OPEN_FAILED);
+        fscl_console_err("%s", fscl_error_what());
+        return cnullptr;
     }
 
     // Allocate memory for the loaded player
     FishPlayer *loadedPlayer = malloc(sizeof(FishPlayer));
 
     // Read player data from the file
-    fread(loadedPlayer, sizeof(FishPlayer), 1, file);
+    fscl_stream_read(&io, loadedPlayer, sizeof(FishPlayer), 1);
 
     fscl_stream_close(file);
     return loadedPlayer;
