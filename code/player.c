@@ -13,7 +13,7 @@ Description:
 #include "player.h"
 
 // Function to create a new FishPlayer
-FishPlayer *player_create(char *name, PlayerType type) {
+FishPlayer *player_create(cstring name, PlayerType type) {
     FishPlayer *newPlayer = malloc(sizeof(FishPlayer));
     newPlayer->info = malloc(sizeof(PlayerInfo));
     newPlayer->move = malloc(sizeof(PlayerMove));
@@ -26,7 +26,7 @@ FishPlayer *player_create(char *name, PlayerType type) {
 }
 
 // Function to set the player's move
-void player_set_move(FishPlayer *player, char *move_message, Move move_type) {
+void player_set_move(FishPlayer *player, cstring move_message, Move move_type) {
     player->move->move_message = move_message;
     player->move->move_type = move_type;
 }
