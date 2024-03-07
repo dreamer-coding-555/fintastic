@@ -15,6 +15,7 @@ Description:
 XTEST_EXTERN_POOL(basic_group);
 XTEST_EXTERN_POOL(player_group);
 XTEST_EXTERN_POOL(scoreboard_group);
+XTEST_EXTERN_POOL(determine_group);
 
 //
 // XUNIT-RUNNER: running test groups from test files
@@ -25,6 +26,7 @@ int main(int argc, char **argv) {
     XTEST_IMPORT_POOL(basic_group );
     XTEST_IMPORT_POOL(player_group);
     XTEST_IMPORT_POOL(scoreboard_group);
+    XTEST_IMPORT_POOL(determine_group);
 
     return XTEST_ERASE();
 } // end of func
