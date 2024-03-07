@@ -10,7 +10,7 @@ data = [
 ]
 
 foreach iter : data
-    fs.copyfile(iter, '@OUTPUT@/' + iter)
+    fs.copyfile(iter, '@OUTPUT@' + iter)
 endforeach
 
 install_data(data, install_dir: 'data')
