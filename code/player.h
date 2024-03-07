@@ -24,7 +24,8 @@ extern "C" {
 typedef enum {
     PAPER,
     ROCK,
-    SCISSOR
+    SCISSOR,
+    INVALID_MOVE = -1
 } Move;
 
 typedef enum {
