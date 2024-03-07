@@ -113,7 +113,7 @@ const_cstring get_result_message(GameResult result, FishPlayer **players) {
         const_cstring template = read_message_from_file(filename);
 
         // Allocate memory for the final message
-        size_t message_size = snprintf(NULL, 0, template, winner_name, winner_move, loser_name, loser_move);
+        size_t message_size = snprintf(cnullptr, 0, template, winner_name, winner_move, loser_name, loser_move);
         char *message = malloc(message_size + 1);
 
         // Populate the final message
@@ -123,4 +123,29 @@ const_cstring get_result_message(GameResult result, FishPlayer **players) {
     } else {
         return "Invalid result";
     }
+}
+
+const_cstring read_message_from_file(const_cstring filename) {
+    cstream stream;
+    cstring message = cnullptr;
+
+    if (fscl_stream_open(&stream, filename, "r") != 0) {
+        perror("Error opening file for reading");
+        return "Error reading file";
+    }
+
+    long file_size = fscl_stream_get_size(&stream);
+    message = malloc(file_size + 1);
+
+    if (fscl_stream_read(&stream, message, file_size, 1) != 1) {
+        perror("Error reading from file");
+        free(message);
+        fscl_stream_close(&stream);
+        return "Error reading file";
+    }
+
+    fscl_stream_close(&stream);
+    message[file_size] = '\0';
+
+    return message;
 }
