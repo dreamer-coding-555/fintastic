@@ -15,7 +15,7 @@ Description:
 enum { MAX_FILE_LENGTH = 256};
 
 GameOutcome determine_outcome(FishPlayer *players[]) {
-    int num_players = sizeof(*players) / sizeof(*players[0]);
+    int num_players = sizeof(players) / sizeof(players);
 
     if (num_players < 2 || num_players > 4) {
         // Invalid number of players
@@ -58,7 +58,7 @@ GameResult get_game_result(FishPlayer *players[]) {
 
     if (outcome == WIN || outcome == LOSE) {
         // Find the winner and loser indices
-        int num_players = sizeof(*players) / sizeof(*players[0]);
+        int num_players = sizeof(players) / sizeof(players);
         for (int i = 0; i < num_players; ++i) {
             for (int j = i + 1; j < num_players; ++j) {
                 Move move1 = player_get_move(players[i])->move_type;
