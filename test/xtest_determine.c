@@ -25,8 +25,8 @@ XTEST_CASE(test_determine_outcome_win) {
 
     TEST_ASSERT_EQUAL(WIN, determine_outcome(&player1, &player2));
 
-    player_destroy(player1);
-    player_destroy(player2);
+    player_destroy(&player1);
+    player_destroy(&player2);
 }
 
 XTEST_CASE(test_determine_outcome_lose) {
@@ -35,8 +35,8 @@ XTEST_CASE(test_determine_outcome_lose) {
 
     TEST_ASSERT_EQUAL(LOSE, determine_outcome(&player1, &player2));
     
-    player_destroy(player1);
-    player_destroy(player2);
+    player_destroy(&player1);
+    player_destroy(&player2);
 }
 
 XTEST_CASE(test_determine_outcome_tie) {
@@ -45,8 +45,8 @@ XTEST_CASE(test_determine_outcome_tie) {
 
     TEST_ASSERT_EQUAL(TIE, determine_outcome(&player1, &player2));
     
-    player_destroy(player1);
-    player_destroy(player2);
+    player_destroy(&player1);
+    player_destroy(&player2);
 }
 
 XTEST_CASE(test_get_game_result_win) {
@@ -58,8 +58,8 @@ XTEST_CASE(test_get_game_result_win) {
     TEST_ASSERT_EQUAL(0, result.winner_index);
     TEST_ASSERT_EQUAL(1, result.loser_index);
     
-    player_destroy(player1);
-    player_destroy(player2);
+    player_destroy(&player1);
+    player_destroy(&player2);
 }
 
 //
