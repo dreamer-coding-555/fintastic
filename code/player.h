@@ -50,6 +50,7 @@ typedef struct {
 
 FishPlayer *player_create(cstring name, PlayerType type);
 void player_set_move(FishPlayer *player, cstring move_message, Move move_type);
+PlayerInfo *player_get_info(FishPlayer *player);
 PlayerMove *player_get_move(FishPlayer *player);
 PlayerType player_get_type(FishPlayer *player);
 int player_get_score(FishPlayer *player);
