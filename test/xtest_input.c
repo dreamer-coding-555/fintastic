@@ -15,8 +15,14 @@ Description:
 #include <fossil/xtest.h>   // basic test tools
 #include <fossil/xassert.h> // extra asserts
 
-// Create a test cstream for file operations
-static cstream test_stream;
+// Mock for console input
+char mock_input[50];  // Adjust the size based on your needs
+
+// Mocked fscl_console_in_read_line
+char* fscl_mock_console_input(const char* prompt) {
+    // Return the mocked input
+    return mock_input;
+}
 
 //
 // XUNIT-CASES: list of test cases testing project features
