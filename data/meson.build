@@ -1,3 +1,5 @@
+fs = import('fs')
+
 data_files = [
     'data.txt',
     'result_win.txt',
@@ -8,7 +10,7 @@ data_files = [
 ]
 
 foreach file : data_files
-    configure_file(input: file, output: join_paths(meson.source_root(), file), copy: true)
+    fs.copy(file, join_paths(meson.source_root(), file))
 endforeach
 
 install_data(data_files, install_dir: get_option('datadir'))
