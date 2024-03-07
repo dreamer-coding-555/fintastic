@@ -40,14 +40,15 @@ void scoreboard_update_entry(ScoreBoard *board, cstring player_name, int new_sco
 void scoreboard_display(ScoreBoard *board) {
     fscl_console_put("Score Board:");
     for (int i = 0; i < board->size; ++i) {
-        fscl_console_err("%s: %d\n", board->entries[i].player_name, board->entries[i].player_score);
+        fscl_console_out("%s: %d\n", board->entries[i].player_name, board->entries[i].player_score);
     }
     fscl_console_out("\n");
 }
 
 void scoreboard_save_to_file(cstream *stream, ScoreBoard *board) {
     if (fscl_stream_open(stream, stream->filename, "w") == 0) {
-        fscl_console_err("Error opening file for writing");
+        fscl_error_set(FSCL_CERROR_MEDIA_OPEN_FAILED);
+        fscl_console_err("%s", fscl_error_wait());
         return;
     }
 
@@ -60,8 +61,9 @@ void scoreboard_save_to_file(cstream *stream, ScoreBoard *board) {
 
 ScoreBoard *scoreboard_load_from_file(cstream *stream) {
     if (fscl_stream_open(stream, stream->filename, "r") == 0) {
-        fscl_console_err("Error opening file for reading");
-        return NULL;
+        fscl_error_set(FSCL_CERROR_MEDIA_OPEN_FAILED);
+        fscl_console_err("%s", fscl_error_wait());
+        return cnullptr;
     }
 
     ScoreBoard *loadedBoard = scoreboard_create();
