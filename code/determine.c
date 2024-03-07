@@ -130,18 +130,18 @@ const_cstring read_message_from_file(const_cstring filename) {
     cstring message = cnullptr;
 
     if (fscl_stream_open(&stream, filename, "r") != 0) {
-        perror("Error opening file for reading");
-        return "Error reading file";
+        fscl_error_set(FSCL_CERROR_MEDIA_OPEN_FAILED);
+        return fscl_error_what();
     }
 
     long file_size = fscl_stream_get_size(&stream);
     message = malloc(file_size + 1);
 
     if (fscl_stream_read(&stream, message, file_size, 1) != 1) {
-        perror("Error reading from file");
+        fscl_error_set(FSCL_CERROR_MEDIA_OPEN_FAILED);
         free(message);
         fscl_stream_close(&stream);
-        return "Error reading file";
+        return fscl_error_what();
     }
 
     fscl_stream_close(&stream);
