@@ -24,6 +24,9 @@ XTEST_CASE(test_determine_outcome_win) {
     FishPlayer player2 = player_create("Player2", ROCK);
 
     TEST_ASSERT_EQUAL(WIN, determine_outcome(&player1, &player2));
+
+    player_destroy(player1);
+    player_destroy(player2);
 }
 
 XTEST_CASE(test_determine_outcome_lose) {
@@ -31,6 +34,9 @@ XTEST_CASE(test_determine_outcome_lose) {
     FishPlayer player2 = player_create("Player2", PAPER);
 
     TEST_ASSERT_EQUAL(LOSE, determine_outcome(&player1, &player2));
+    
+    player_destroy(player1);
+    player_destroy(player2);
 }
 
 XTEST_CASE(test_determine_outcome_tie) {
@@ -38,6 +44,9 @@ XTEST_CASE(test_determine_outcome_tie) {
     FishPlayer player2 = player_create("Player2", SCISSOR);
 
     TEST_ASSERT_EQUAL(TIE, determine_outcome(&player1, &player2));
+    
+    player_destroy(player1);
+    player_destroy(player2);
 }
 
 XTEST_CASE(test_get_game_result_win) {
@@ -48,6 +57,9 @@ XTEST_CASE(test_get_game_result_win) {
     
     TEST_ASSERT_EQUAL(0, result.winner_index);
     TEST_ASSERT_EQUAL(1, result.loser_index);
+    
+    player_destroy(player1);
+    player_destroy(player2);
 }
 
 //
