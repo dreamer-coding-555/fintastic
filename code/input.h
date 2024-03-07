@@ -28,7 +28,7 @@ typedef struct {
     Move move_type;
 } PlayerInput;
 
-Move get_player_input(PlayerInput *player);
+PlayerInput get_user_input();
 
 #ifdef __cplusplus
 }
