@@ -9,7 +9,7 @@ data = [
 ]
 
 foreach iter : data
-    fs.copyfile(data, '.')
+    fs.copyfile(iter, '.')
 endforeach
 
 install_data(data)
