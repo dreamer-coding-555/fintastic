@@ -14,8 +14,8 @@ Description:
 
 enum { MAX_FILE_LENGTH = 256};
 
-GameOutcome determine_outcome(FishPlayer **players) {
-    int num_players = *(&players + 1) - players;
+GameOutcome determine_outcome(FishPlayer *players[]) {
+    int num_players = sizeof(players) / sizeof(players[0]);
 
     if (num_players < 2 || num_players > 4) {
         // Invalid number of players
@@ -52,13 +52,13 @@ GameOutcome determine_outcome(FishPlayer **players) {
     return TIE; // No winner found
 }
 
-GameResult get_game_result(FishPlayer **players) {
+GameResult get_game_result(FishPlayer *players[]) {
     GameResult result = {-1, -1};
     GameOutcome outcome = determine_outcome(players);
 
     if (outcome == WIN || outcome == LOSE) {
         // Find the winner and loser indices
-        int num_players = *(&players + 1) - players;
+        int num_players = sizeof(players) / sizeof(players[0]);
         for (int i = 0; i < num_players; ++i) {
             for (int j = i + 1; j < num_players; ++j) {
                 Move move1 = player_get_move(players[i])->move_type;
@@ -82,7 +82,7 @@ GameResult get_game_result(FishPlayer **players) {
     return result;
 }
 
-const_cstring get_outcome_message(GameOutcome outcome, FishPlayer **players) {
+const_cstring get_outcome_message(GameOutcome outcome, FishPlayer *players[]) {
     const_cstring filename;
 
     switch (outcome) {
@@ -102,7 +102,7 @@ const_cstring get_outcome_message(GameOutcome outcome, FishPlayer **players) {
     return read_message_from_file(filename);
 }
 
-const_cstring get_result_message(GameResult result, FishPlayer **players) {
+const_cstring get_result_message(GameResult result, FishPlayer *players[]) {
     if (result.winner_index != -1 && result.loser_index != -1) {
         char *winner_name = player_get_info(players[result.winner_index])->name;
         char *loser_name = player_get_info(players[result.loser_index])->name;
