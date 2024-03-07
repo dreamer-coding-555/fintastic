@@ -8,8 +8,8 @@ data = [
     'determine_paper.txt'
 ]
 
-#foreach iter : data
+foreach iter : data
     fs.copyfile(data, '.')
-#endforeach
+endforeach
 
 install_data(data)
