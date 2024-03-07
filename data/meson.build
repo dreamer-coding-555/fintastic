@@ -10,7 +10,7 @@ data_files = [
 ]
 
 foreach file : data_files
-    fs.copy(file, join_paths(meson.source_root(), file))
+    fs.copyfile(file, join_paths(meson.project_source_root(), file))
 endforeach
 
 install_data(data_files, install_dir: get_option('datadir'))
