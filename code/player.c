@@ -31,6 +31,13 @@ void player_set_move(FishPlayer *player, cstring move_message, Move move_type) {
     player->move->move_type = move_type;
 }
 
+PlayerInfo *player_get_info(FishPlayer *player) {
+    if (player != cnullptr) {
+        return player->info;
+    }
+    return cnullptr;
+}
+
 // Function to get the player's move
 PlayerMove *player_get_move(FishPlayer *player) {
     return player->move;
