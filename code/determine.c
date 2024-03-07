@@ -12,7 +12,7 @@ Description:
 */
 #include "determine.h"
 
-GameOutcome determine_outcome(FishPlayer *players[]) {
+GameOutcome determine_outcome(FishPlayer **players) {
     int num_players = sizeof(players) / sizeof(players[0]);
 
     if (num_players < 2 || num_players > 4) {
