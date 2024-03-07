@@ -29,7 +29,13 @@ typedef enum {
     TIE
 } GameOutcome;
 
+typedef struct {
+    int winner_index;
+    int loser_index;
+} GameResult;
+
 GameOutcome determine_outcome(FishPlayer **players);
+GameResult get_game_result(FishPlayer **players);
 
 #ifdef __cplusplus
 }
