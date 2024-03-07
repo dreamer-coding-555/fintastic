@@ -11,6 +11,7 @@ Description:
 ==============================================================================
 */
 #include "determine.h" // player source code
+#include "player.h"
 
 #include <fossil/xtest.h>   // basic test tools
 #include <fossil/xassert.h> // extra asserts
