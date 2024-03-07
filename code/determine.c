@@ -12,7 +12,7 @@ Description:
 */
 #include "determine.h"
 
-enum { MAX_FILENAME_LENGTH = 256};
+enum { MAX_FILE_LENGTH = 256};
 
 GameOutcome determine_outcome(FishPlayer **players) {
     int num_players = sizeof(players) / sizeof(players[0]);
