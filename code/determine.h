@@ -34,10 +34,10 @@ typedef struct {
     int loser_index;
 } GameResult;
 
-GameOutcome determine_outcome(FishPlayer **players);
-GameResult get_game_result(FishPlayer **players);
-const_cstring get_outcome_message(GameOutcome outcome, FishPlayer **players);
-const_cstring get_result_message(GameResult result, FishPlayer **players);
+GameOutcome determine_outcome(FishPlayer *players[]);
+GameResult get_game_result(FishPlayer *players[]);
+const_cstring get_outcome_message(GameOutcome outcome, FishPlayer *players[]);
+const_cstring get_result_message(GameResult result, FishPlayer *players[]);
 const_cstring read_message_from_file(const_cstring filename);
 
 #ifdef __cplusplus
