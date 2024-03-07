@@ -15,8 +15,11 @@ Description:
 PlayerInput get_user_input() {
     PlayerInput player_input;
 
-    fscl_console_out_color("light_blue", "Enter your move (Rock, Paper, or Scissor): ");
-    fscl_console_in_get_line(player_input.raw_input);
+    char* raw_input = fscl_console_in_read_line("Enter your move (Rock, Paper, or Scissor): ");
+    
+    // Copy the raw input to the PlayerInput structure
+    strncpy(player_input.raw_input, raw_input, sizeof(player_input.raw_input) - 1);
+    player_input.raw_input[sizeof(player_input.raw_input) - 1] = '\0';
 
     // Convert input to lowercase for case-insensitivity
     for (int i = 0; player_input.raw_input[i]; i++) {
@@ -34,6 +37,9 @@ PlayerInput get_user_input() {
         // Default to invalid move in case of unrecognized input
         player_input.move_type = INVALID_MOVE;
     }
+
+    // Free the allocated memory
+    free(raw_input);
 
     return player_input;
 }
