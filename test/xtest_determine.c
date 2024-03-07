@@ -19,27 +19,33 @@ Description:
 // XUNIT-CASES: list of test cases testing project features
 //
 
-XTEST_CASE(test_determine_outcome) {
-    // Create FishPlayers with different moves
+XTEST_CASE(test_determine_outcome_win) {
     FishPlayer player1 = create_fish_player("Player1", PAPER);
     FishPlayer player2 = create_fish_player("Player2", ROCK);
 
-    // Get outcome
-    GameOutcome outcome = determine_outcome(&player1, &player2);
-
-    // Check if the outcome is as expected
-    TEST_ASSERT_EQUAL(WIN, outcome);
+    TEST_ASSERT_EQUAL(WIN, determine_outcome(&player1, &player2));
 }
 
-XTEST_CASE(test_get_game_result) {
-    // Create FishPlayers with different moves
+XTEST_CASE(test_determine_outcome_lose) {
+    FishPlayer player1 = create_fish_player("Player1", ROCK);
+    FishPlayer player2 = create_fish_player("Player2", PAPER);
+
+    TEST_ASSERT_EQUAL(LOSE, determine_outcome(&player1, &player2));
+}
+
+XTEST_CASE(test_determine_outcome_tie) {
+    FishPlayer player1 = create_fish_player("Player1", SCISSOR);
+    FishPlayer player2 = create_fish_player("Player2", SCISSOR);
+
+    TEST_ASSERT_EQUAL(TIE, determine_outcome(&player1, &player2));
+}
+
+XTEST_CASE(test_get_game_result_win) {
     FishPlayer player1 = create_fish_player("Player1", PAPER);
     FishPlayer player2 = create_fish_player("Player2", ROCK);
 
-    // Get game result
     GameResult result = get_game_result(&player1, &player2);
-
-    // Check if the result is as expected
+    
     TEST_ASSERT_EQUAL(0, result.winner_index);
     TEST_ASSERT_EQUAL(1, result.loser_index);
 }
@@ -48,6 +54,8 @@ XTEST_CASE(test_get_game_result) {
 // XUNIT-GROUP: a group of test cases from the current test file
 //
 XTEST_DEFINE_POOL(determine_group) {
-    XTEST_RUN_UNIT(test_determine_outcome);
-    XTEST_RUN_UNIT(test_get_game_result);
+    XTEST_RUN_UNIT(test_determine_outcome_win);
+    XTEST_RUN_UNIT(test_determine_outcome_lose);
+    XTEST_RUN_UNIT(test_determine_outcome_tie);
+    XTEST_RUN_UNIT(test_get_game_result_win);
 } // end of fixture
