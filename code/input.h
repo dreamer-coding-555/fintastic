@@ -21,23 +21,14 @@ extern "C" {
 #include <fossil/xutil.h> // base utilities
 #include <fossil/xstring.h> // that string lib
 
-typedef struct {
-    cstring player_name;
-    int player_score;
-} ScoreEntry;
+#include "player.h"
 
 typedef struct {
-    ScoreEntry *entries;
-    int size;
-} ScoreBoard;
+    char raw_input[10];
+    Move move_type;
+} PlayerInput;
 
-ScoreBoard *scoreboard_create();
-void scoreboard_add_entry(ScoreBoard *board, cstring player_name, int player_score);
-void scoreboard_update_entry(ScoreBoard *board, cstring player_name, int new_score);
-void scoreboard_display(ScoreBoard *board);
-void scoreboard_save_to_file(cstream *stream, ScoreBoard *board);
-ScoreBoard *scoreboard_load_from_file(cstream *stream);
-void scoreboard_destroy(ScoreBoard *board);
+Move get_player_input(PlayerInput *player);
 
 #ifdef __cplusplus
 }
