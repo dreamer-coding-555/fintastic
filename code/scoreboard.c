@@ -48,7 +48,7 @@ void scoreboard_display(ScoreBoard *board) {
 void scoreboard_save_to_file(cstream *stream, ScoreBoard *board) {
     if (fscl_stream_open(stream, stream->filename, "w") == 0) {
         fscl_error_set(FSCL_CERROR_MEDIA_OPEN_FAILED);
-        fscl_console_err("%s", fscl_error_wait());
+        fscl_console_err("%s", fscl_error_what());
         return;
     }
 
@@ -62,7 +62,7 @@ void scoreboard_save_to_file(cstream *stream, ScoreBoard *board) {
 ScoreBoard *scoreboard_load_from_file(cstream *stream) {
     if (fscl_stream_open(stream, stream->filename, "r") == 0) {
         fscl_error_set(FSCL_CERROR_MEDIA_OPEN_FAILED);
-        fscl_console_err("%s", fscl_error_wait());
+        fscl_console_err("%s", fscl_error_what());
         return cnullptr;
     }
 
