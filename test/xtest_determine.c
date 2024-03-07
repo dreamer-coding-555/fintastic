@@ -23,6 +23,10 @@ Description:
 XTEST_CASE(test_determine_outcome_win) {
     FishPlayer *player1 = player_create("Player1", FISH_PLAYER);
     FishPlayer *player2 = player_create("Player2", FISH_NPC);
+    
+    player_set_move(player1, "Test move player", PAPER);
+    player_set_move(player2, "Test move npc", ROCK);
+
     FishPlayer *players[] = {player1, player2};
 
     TEST_ASSERT_EQUAL(WIN, determine_outcome(players));
@@ -34,6 +38,10 @@ XTEST_CASE(test_determine_outcome_win) {
 XTEST_CASE(test_determine_outcome_lose) {
     FishPlayer *player1 = player_create("Player1", FISH_PLAYER);
     FishPlayer *player2 = player_create("Player2", FISH_NPC);
+    
+    player_set_move(player1, "Test move player", ROCK);
+    player_set_move(player2, "Test move npc", PAPER);
+    
     FishPlayer *players[] = {player1, player2};
 
     TEST_ASSERT_EQUAL(LOSE, determine_outcome(players));
@@ -45,6 +53,10 @@ XTEST_CASE(test_determine_outcome_lose) {
 XTEST_CASE(test_determine_outcome_tie) {
     FishPlayer *player1 = player_create("Player1", FISH_PLAYER);
     FishPlayer *player2 = player_create("Player2", FISH_NPC);
+
+    player_set_move(player1, "Test move player", ROCK);
+    player_set_move(player2, "Test move npc", ROCK);
+
     FishPlayer *players[] = {player1, player2};
 
     TEST_ASSERT_EQUAL(TIE, determine_outcome(players));
@@ -56,6 +68,10 @@ XTEST_CASE(test_determine_outcome_tie) {
 XTEST_CASE(test_get_game_result_win) {
     FishPlayer *player1 = player_create("Player1", FISH_PLAYER);
     FishPlayer *player2 = player_create("Player2", FISH_NPC);
+    
+    player_set_move(player1, "Test move player", PAPER);
+    player_set_move(player2, "Test move npc", ROCK);
+
     FishPlayer *players[] = {player1, player2};
 
     GameResult result = get_game_result(players);
