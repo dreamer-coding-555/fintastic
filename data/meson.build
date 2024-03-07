@@ -1,4 +1,5 @@
 fs = import('fs')
+
 data = [
     'data.txt',
     'result_win.txt',
@@ -9,7 +10,7 @@ data = [
 ]
 
 foreach iter : data
-    fs.copyfile(iter, '.')
+    fs.copyfile(iter, '@OUTPUT@/' + iter)
 endforeach
 
-install_data(data)
+install_data(data, install_dir: 'data')
