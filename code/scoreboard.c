@@ -38,7 +38,7 @@ void scoreboard_update_entry(ScoreBoard *board, cstring player_name, int new_sco
 }
 
 void scoreboard_display(ScoreBoard *board) {
-    fscl_console_put("Score Board:");
+    fscl_console_puts("Score Board:");
     for (int i = 0; i < board->size; ++i) {
         fscl_console_out("%s: %d\n", board->entries[i].player_name, board->entries[i].player_score);
     }
