@@ -20,46 +20,50 @@ Description:
 //
 
 XTEST_CASE(test_determine_outcome_win) {
-    FishPlayer player1 = player_create("Player1", PAPER);
-    FishPlayer player2 = player_create("Player2", ROCK);
+    FishPlayer *player1 = player_create("Player1", PAPER);
+    FishPlayer *player2 = player_create("Player2", ROCK);
+    FishPlayer *players[] = {player1, player2};
 
-    TEST_ASSERT_EQUAL(WIN, determine_outcome(&player1, &player2));
+    TEST_ASSERT_EQUAL(WIN, determine_outcome(players));
 
-    player_destroy(&player1);
-    player_destroy(&player2);
+    player_destroy(player1);
+    player_destroy(player2);
 }
 
 XTEST_CASE(test_determine_outcome_lose) {
-    FishPlayer player1 = player_create("Player1", ROCK);
-    FishPlayer player2 = player_create("Player2", PAPER);
+    FishPlayer *player1 = player_create("Player1", ROCK);
+    FishPlayer *player2 = player_create("Player2", PAPER);
+    FishPlayer *players[] = {player1, player2};
 
-    TEST_ASSERT_EQUAL(LOSE, determine_outcome(&player1, &player2));
+    TEST_ASSERT_EQUAL(LOSE, determine_outcome(players));
     
-    player_destroy(&player1);
-    player_destroy(&player2);
+    player_destroy(player1);
+    player_destroy(player2);
 }
 
 XTEST_CASE(test_determine_outcome_tie) {
-    FishPlayer player1 = player_create("Player1", SCISSOR);
-    FishPlayer player2 = player_create("Player2", SCISSOR);
+    FishPlayer *player1 = player_create("Player1", SCISSOR);
+    FishPlayer *player2 = player_create("Player2", SCISSOR);
+    FishPlayer *players[] = {player1, player2};
 
-    TEST_ASSERT_EQUAL(TIE, determine_outcome(&player1, &player2));
+    TEST_ASSERT_EQUAL(TIE, determine_outcome(players));
     
-    player_destroy(&player1);
-    player_destroy(&player2);
+    player_destroy(player1);
+    player_destroy(player2);
 }
 
 XTEST_CASE(test_get_game_result_win) {
-    FishPlayer player1 = player_create("Player1", PAPER);
-    FishPlayer player2 = player_create("Player2", ROCK);
+    FishPlayer *player1 = player_create("Player1", PAPER);
+    FishPlayer *player2 = player_create("Player2", ROCK);
+    FishPlayer *players[] = {player1, player2};
 
-    GameResult result = get_game_result(&player1, &player2);
+    GameResult result = get_game_result(players);
     
     TEST_ASSERT_EQUAL(0, result.winner_index);
     TEST_ASSERT_EQUAL(1, result.loser_index);
     
-    player_destroy(&player1);
-    player_destroy(&player2);
+    player_destroy(player1);
+    player_destroy(player2);
 }
 
 //
