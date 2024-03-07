@@ -2,7 +2,7 @@ dir = include_directories('.')
 code = files(
     'app.c',
     'player.c',
-    'determine',
+    'determine.c',
     'scoreboard.c')
 
 executable('fintastic',
