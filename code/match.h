@@ -24,9 +24,10 @@ extern "C" {
 #include "player.h"
 #include "determine.h"
 #include "scoreboard.h"
+#include "display.h"
 
-void play_match_mode(FishPlayer players[MAX_PLAYERS], int num_players, ScoreBoard *scoreboard);
-void match_randomize_lamps(FishPlayer players[MAX_PLAYERS], int num_players);
+void play_match_mode(FishPlayer players[MAX_PLAYERS], ScoreBoard *scoreboard);
+void match_randomize_lamps(FishPlayer players[MAX_PLAYERS]);
 
 #ifdef __cplusplus
 }
