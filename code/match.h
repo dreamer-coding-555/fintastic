@@ -22,6 +22,7 @@ extern "C" {
 #include <fossil/xstring.h> // that string lib
 
 #include "player.h"
+#include "determine.h"
 #include "scoreboard.h"
 
 void play_match_mode(FishPlayer players[MAX_PLAYERS], int num_players, ScoreBoard *scoreboard);
