@@ -21,6 +21,11 @@ extern "C" {
 #include <fossil/xutil.h> // base utilities
 #include <fossil/xstring.h> // that string lib
 
+enum {
+    MIN_PLAYERS = 2,
+    MAX_PLAYERS = 4
+};
+
 typedef enum {
     PAPER,
     ROCK,
