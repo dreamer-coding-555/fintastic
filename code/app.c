@@ -66,11 +66,7 @@ int run_app(int argc, char **argv) {
 
     char mode_choice[20];
     do {
-        fscl_console_out_color("light_cyan", "Choose a mode:\n");
-        fscl_console_out_color("light_cyan", "match: play a quick match\n");
-        fscl_console_out_color("light_cyan", "story: play story mode\n");
-        fscl_console_out_color("light_cyan", "score: view the scoreboard\n");
-        fscl_console_out_color("light_cyan", "exit : swim away from game\n");
+        display_start_menu();
         fscl_console_in_get_line(mode_choice);
 
         if (strcmp(mode_choice, "match") == 0) {
