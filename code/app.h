@@ -21,11 +21,8 @@ extern "C" {
 #include <fossil/xutil.h> // base utilities
 #include <fossil/xstring.h> // that string lib
 
-#include "player.h"
-#include "match.h"
-#include "input.h"
-#include "determine.h"
-#include "scoreboard.h"
+#include "story.h" // story mode logic
+#include "match.h" // match mode logic
 
 enum {
     APP_ENABLE,
