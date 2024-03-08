@@ -38,29 +38,15 @@ void play_match_mode() {
         return;
     }
 
-    // match mode logic here
-    // a simple rock-paper-scissors game between players
-
     // Create an array to store players
     FishPlayer players[MAX_PLAYERS];
 
     // Create an array to store the scoreboard
-    ScoreBoard *scoreboard = scoreboard_create();
+    ScoreBoard scoreboard;
+    scoreboard_init(&scoreboard);
 
-    // Create human players
-    for (int i = 0; i < num_human_players; i++) {
-        char name[20];
-        fscl_console_out("Enter name for Human Player %d: ", i + 1);
-        fscl_console_in_get_line(name);
-        players[i] = create_fish_player(name, get_user_input().move_type);
-    }
-
-    // Create AI players
-    for (int i = num_human_players; i < num_players; i++) {
-        char name[20];
-        snprintf(name, sizeof(name), "AI Player %d", i + 1);
-        players[i] = create_ai_fish_player(name);
-    }
+    // Initialize players for the match using utility function
+    match_initialize_players(players, num_human_players, num_players);
 
     // Number of rounds to simulate
     int num_rounds = 3; // Adjust as needed
@@ -68,43 +54,12 @@ void play_match_mode() {
     for (int round = 1; round <= num_rounds; round++) {
         fscl_console_out_color("light_cyan", "===== ROUND %d =====\n", round);
 
-        // Simulate a game round for each player
-        for (int i = 0; i < num_players; i++) {
-            players[i].move = create_player_move(players[i].name, get_user_input().move_type);
-        }
-
-        // Determine the game outcome
-        for (int i = 0; i < num_players; i++) {
-            for (int j = i + 1; j < num_players; j++) {
-                GameOutcome outcome = determine_outcome(&players[i], &players[j]);
-
-                // Display the result
-                fscl_console_out_color("light_cyan", "%s vs %s: ", players[i].name, players[j].name);
-                if (outcome == WIN) {
-                    fscl_console_out_color("light_green", "%s wins!\n", players[i].name);
-                    scoreboard_update_entry(scoreboard, players[i].name, scoreboard->entries[i].player_score + 1);
-                } else if (outcome == LOSE) {
-                    fscl_console_out_color("light_red", "%s wins!\n", players[j].name);
-                    scoreboard_update_entry(scoreboard, players[j].name, scoreboard->entries[j].player_score + 1);
-                } else {
-                    fscl_console_out_color("light_yellow", "It's a tie!\n");
-                }
-            }
-        }
-
-        // Display the scoreboard at the end of each round
-        scoreboard_display(scoreboard);
+        // Play a round using the utility function
+        match_play_round(players, num_players, &scoreboard);
     }
 
-    // Save the final scoreboard to a file
-    cstream stream;
-    if (fscl_stream_open(&stream, "scoreboard.txt", "w")) {
-        scoreboard_save_to_file(&stream, scoreboard);
-        fscl_stream_close(&stream);
-    }
-
-    // Clean up the scoreboard
-    scoreboard_destroy(scoreboard);
+    // Save the final scoreboard using the utility function
+    match_save_final_scoreboard(&scoreboard);
 }
 
 void play_story_mode() {
