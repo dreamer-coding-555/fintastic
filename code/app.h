@@ -22,6 +22,7 @@ extern "C" {
 #include <fossil/xstring.h> // that string lib
 
 #include "player.h"
+#include "match.h"
 #include "input.h"
 #include "determine.h"
 #include "scoreboard.h"
