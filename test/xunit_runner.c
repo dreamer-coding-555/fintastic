@@ -14,6 +14,7 @@ Description:
 
 XTEST_EXTERN_POOL(basic_group);
 XTEST_EXTERN_POOL(input_group);
+XTEST_EXTERN_POOL(match_group);
 XTEST_EXTERN_POOL(player_group);
 XTEST_EXTERN_POOL(scoreboard_group);
 XTEST_EXTERN_POOL(determine_group);
@@ -24,8 +25,9 @@ XTEST_EXTERN_POOL(determine_group);
 int main(int argc, char **argv) {
     XTEST_CREATE(argc, argv);
 
-    XTEST_IMPORT_POOL(basic_group );
+    XTEST_IMPORT_POOL(basic_group);
     XTEST_IMPORT_POOL(input_group);
+    XTEST_IMPORT_POOL(match_group);
     XTEST_IMPORT_POOL(player_group);
     XTEST_IMPORT_POOL(scoreboard_group);
     XTEST_IMPORT_POOL(determine_group);
