@@ -12,28 +12,70 @@ Description:
 */
 #include "match.h"
 
-void play_match_mode(FishPlayer players[MAX_PLAYERS], int num_players, ScoreBoard *scoreboard) {
+void play_match_mode(FishPlayer players[MAX_PLAYERS], ScoreBoard *scoreboard) {
+    // Display match introduction
+    display_intro();
+
     // Number of rounds to simulate
     int num_rounds = 3; // Adjust as needed
 
+    // Create random lamps for the match
+    match_randomize_lamps(players);
+
     for (int round = 1; round <= num_rounds; round++) {
-        fscl_console_out_color("light_cyan", "===== ROUND %d =====\n", round);
+        display_round(round);
+        display_weapon_menu();
 
-        // Play a round using the utility function
-        match_play_round(players, num_players, scoreboard);
+        // Simulate a game round for each player
+        for (int i = 0; i < MAX_PLAYERS; i++) {
+            int weapon_choice;
+            fscl_console_in_valid_input("Choose your weapon (1-3): ", &weapon_choice);
 
-        // Randomize the lava lamp states for the next round
-        match_randomize_lamps(players, num_players);
+            // Set player move based on the weapon choice
+            switch (weapon_choice) {
+                case 1:
+                    player_set_move(&players[i], "Rock", ROCK);
+                    break;
+                case 2:
+                    player_set_move(&players[i], "Paper", PAPER);
+                    break;
+                case 3:
+                    player_set_move(&players[i], "Scissors", SCISSOR);
+                    break;
+                default:
+                    display_error();
+                    return;
+            }
+        }
+
+        // Display player moves
+        display_player_moves(players, MAX_PLAYERS);
+
+        // Determine the game outcome
+        determine_outcomes(players, MAX_PLAYERS, scoreboard);
+
+        // Display the result
+        display_result(players, MAX_PLAYERS, scoreboard);
+
+        // Display the scoreboard at the end of each round
+        scoreboard_display(scoreboard);
     }
 
-    // Save the final scoreboard using the utility function
-    match_save_final_scoreboard(scoreboard);
-    fscl_console_out_color("light_cyan", "===== MATCH ENDED =====\n");
+    // Save the final scoreboard to a file
+    cstream stream;
+    if (fscl_stream_open(&stream, "scoreboard.txt", "w")) {
+        scoreboard_save_to_file(&stream, scoreboard);
+        fscl_stream_close(&stream);
+    }
+
+    // Display a goodbye message
+    display_goodbye();
 }
 
-void match_randomize_lamps(FishPlayer players[MAX_PLAYERS], int num_players) {
-    // Randomize the lava lamp state for each player
-    for (int i = 0; i < num_players; i++) {
-        fscl_lava_randomize(players[i].fish->lamp, 1);
+void match_randomize_lamps(FishPlayer players[MAX_PLAYERS]) {
+    for (int i = 0; i < MAX_PLAYERS; i++) {
+        // Randomly set lamp position and velocity for each player
+        players[i].lamp.position = (double)fscl_lava_random() / (double)RAND_MAX;
+        players[i].lamp.velocity = (double)fscl_lava_random() / (double)RAND_MAX;
     }
 }
