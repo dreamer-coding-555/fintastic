@@ -24,8 +24,9 @@ extern "C" {
 #include "player.h"
 #include "determine.h"
 #include "scoreboard.h"
+#include "display.h"
 
-void play_match_mode(FishPlayer players[MAX_PLAYERS]);
+void match_mode();
 
 #ifdef __cplusplus
 }
