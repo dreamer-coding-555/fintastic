@@ -24,6 +24,7 @@ extern "C" {
 #include "player.h"
 #include "input.h"
 #include "determine.h"
+#include "scoreboard.h"
 
 enum {
     APP_ENABLE,
