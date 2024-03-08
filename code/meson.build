@@ -1,6 +1,7 @@
 dir = include_directories('.')
 code = files(
     'app.c',
+    'match.c',
     'input.c',
     'player.c',
     'determine.c',
