@@ -4,6 +4,7 @@ code = files(
     'match.c',
     'input.c',
     'player.c',
+    'display.c',
     'determine.c',
     'scoreboard.c')
 
