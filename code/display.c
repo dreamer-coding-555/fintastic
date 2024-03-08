@@ -59,3 +59,21 @@ void display_error() {
 void display_loading() {
     fscl_console_out_color("light_yellow", "Loading... Please wait.\n");
 }
+
+void display_start_menu() {
+    fscl_console_out_color("light_cyan", "===== FISH RPS GAME =====\n");
+    // Add start menu ASCII art here
+    fscl_console_out_color("light_blue", "      ><(((('>  \n");
+    fscl_console_out_color("light_yellow", "-. story: Play story mode\n");
+    fscl_console_out_color("light_yellow", "-. match: Play a match\n");
+    fscl_console_out_color("light_yellow", "-. score: View scoreboard\n");
+    fscl_console_out_color("light_yellow", "-. exit: Exit the game\n");
+}
+
+void display_weapon_menu() {
+    fscl_console_out_color("light_yellow", "===== WEAPON SELECTION =====\n");
+    // Add weapon menu ASCII art here
+    fscl_console_out_color("light_cyan", "      (1) rock   \n");
+    fscl_console_out_color("light_cyan", "      (2) paper  \n");
+    fscl_console_out_color("light_cyan", "      (3) scissors\n");
+}
