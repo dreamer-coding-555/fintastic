@@ -14,12 +14,34 @@ Description:
 
 void display_intro() {
     fscl_console_out_color("light_cyan", "===== WELCOME TO FISH RPS GAME =====\n");
-    // Add fish ASCII art here
-    fscl_console_out_color("light_blue", "      ><(((('>  \n");
+    fscl_console_out_color("light_blue", "><(((('>  \n");
+    fscl_console_out_color("light_green", "~~~~~~~\n");
+    fscl_console_out_color("light_green", "~~~~~~~\n");
+    fscl_datetime_sleep(1000);
 
-    // Add seaweed ASCII art here
+    fscl_console_out_color("light_cyan", "===== WELCOME TO FISH RPS GAME =====\n");
+    fscl_console_out_color("light_blue", "   ><(((('>  \n");
+    fscl_console_out_color("light_green", " ~~~~~~~\n");
+    fscl_console_out_color("light_green", "~~~~~~~\n");
+    fscl_datetime_sleep(1000);
+    
+    fscl_console_out_color("light_cyan", "===== WELCOME TO FISH RPS GAME =====\n");
+    fscl_console_out_color("light_blue", "     ><(((('>  \n");
     fscl_console_out_color("light_green", "~~~~~~~\n");
     fscl_console_out_color("light_green", "~~~~~~~\n");
+    fscl_datetime_sleep(1000);
+    
+    fscl_console_out_color("light_cyan", "===== WELCOME TO FISH RPS GAME =====\n");
+    fscl_console_out_color("light_blue", "         ><(((('>  \n");
+    fscl_console_out_color("light_green", " ~~~~~~~\n");
+    fscl_console_out_color("light_green", "~~~~~~~\n");
+    fscl_datetime_sleep(1000);
+    
+    fscl_console_out_color("light_cyan", "===== WELCOME TO FISH RPS GAME =====\n");
+    fscl_console_out_color("light_blue", "            ><(((('>  \n");
+    fscl_console_out_color("light_green", "~~~~~~~\n");
+    fscl_console_out_color("light_green", "~~~~~~~\n");
+    fscl_datetime_sleep(1000);
 }
 
 void display_round(int round_number) {
