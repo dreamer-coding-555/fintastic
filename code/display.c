@@ -44,42 +44,12 @@ void display_intro() {
     fscl_datetime_sleep(1000);
 }
 
-void display_round(int round_number) {
-    fscl_console_out_color("light_cyan", "===== ROUND %d =====\n", round_number);
-}
-
-void display_player_moves(FishPlayer players[MAX_PLAYERS], int num_players) {
-    for (int i = 0; i < num_players; i++) {
-        fscl_console_out("%s's move: %s\n", player_get_info(&players[i])->name, player_get_move(&players[i])->move_message);
-    }
-}
-
-void display_result(FishPlayer players[MAX_PLAYERS], int num_players, ScoreBoard *scoreboard) {
-    for (int i = 0; i < num_players; i++) {
-        fscl_console_out_color("light_cyan", "===== RESULT =====\n");
-        fscl_console_out_color("light_cyan", "%s's move: %s\n", player_get_info(&players[i])->name, player_get_move(&players[i])->move_message);
-    }
-
-    // Determine outcomes and display the results
-    determine_outcomes(players, num_players, scoreboard);
-    display_scoreboard(scoreboard);
-}
-
-void display_instructions() {
-    fscl_console_out_color("light_yellow", "===== GAME INSTRUCTIONS =====\n");
-    fscl_console_out_color("light_yellow", "Enter your move choice: 1 (Rock), 2 (Paper), 3 (Scissors)\n");
-}
-
 void display_goodbye() {
     fscl_console_out_color("light_cyan", "===== THANK YOU FOR PLAYING! GOODBYE! =====\n");
 }
 
 void display_error() {
     fscl_console_out_color("light_red", "===== ERROR OCCURRED! PLEASE TRY AGAIN =====\n");
-}
-
-void display_loading() {
-    fscl_console_out_color("light_yellow", "Loading... Please wait.\n");
 }
 
 void display_start_menu() {
