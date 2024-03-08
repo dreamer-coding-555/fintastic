@@ -13,31 +13,31 @@ Description:
 #include "display.h"
 
 void display_intro() {
-    fscl_console_out_color("light_cyan", "===== WELCOME TO FISH RPS GAME =====\n");
+    fscl_console_out_color("light_cyan", "===== Welcome Fintastic Foes =====\n");
     fscl_console_out_color("light_blue", "><(((('>  \n");
     fscl_console_out_color("light_green", "~~~~~~~\n");
     fscl_console_out_color("light_green", "~~~~~~~\n");
     fscl_datetime_sleep(1000);
 
-    fscl_console_out_color("light_cyan", "===== WELCOME TO FISH RPS GAME =====\n");
+    fscl_console_out_color("light_cyan", "===== Welcome Fintastic Foes =====\n");
     fscl_console_out_color("light_blue", "   ><(((('>  \n");
     fscl_console_out_color("light_green", " ~~~~~~~\n");
     fscl_console_out_color("light_green", "~~~~~~~\n");
     fscl_datetime_sleep(1000);
     
-    fscl_console_out_color("light_cyan", "===== WELCOME TO FISH RPS GAME =====\n");
+    fscl_console_out_color("light_cyan", "===== Welcome Fintastic Foes =====\n");
     fscl_console_out_color("light_blue", "     ><(((('>  \n");
     fscl_console_out_color("light_green", "~~~~~~~\n");
     fscl_console_out_color("light_green", "~~~~~~~\n");
     fscl_datetime_sleep(1000);
     
-    fscl_console_out_color("light_cyan", "===== WELCOME TO FISH RPS GAME =====\n");
+    fscl_console_out_color("light_cyan", "===== Welcome Fintastic Foes =====\n");
     fscl_console_out_color("light_blue", "         ><(((('>  \n");
     fscl_console_out_color("light_green", " ~~~~~~~\n");
     fscl_console_out_color("light_green", "~~~~~~~\n");
     fscl_datetime_sleep(1000);
     
-    fscl_console_out_color("light_cyan", "===== WELCOME TO FISH RPS GAME =====\n");
+    fscl_console_out_color("light_cyan", "===== Welcome Fintastic Foes =====\n");
     fscl_console_out_color("light_blue", "            ><(((('>  \n");
     fscl_console_out_color("light_green", "~~~~~~~\n");
     fscl_console_out_color("light_green", "~~~~~~~\n");
