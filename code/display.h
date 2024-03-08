@@ -21,6 +21,7 @@ extern "C" {
 #include <fossil/xutil.h> // base utilities
 #include <fossil/xstring.h> // that string lib
 
+#include "player.h"
 #include "scoreboard.h"
 
 void display_intro();
