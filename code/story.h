@@ -22,8 +22,11 @@ extern "C" {
 #include <fossil/xstring.h> // that string lib
 
 #include "player.h"
+#include "determine.h"
+#include "scoreboard.h"
+#include "display.h"
 
-void play_story_mode(FishPlayer players[MAX_PLAYERS]);
+void story_mode();
 
 #ifdef __cplusplus
 }
