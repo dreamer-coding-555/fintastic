@@ -11,8 +11,6 @@ Description:
 ==============================================================================
 */
 #include "app.h"
-#include "match.h"
-#include "display.h"
 
 void play_match_mode() {
     // Number of rounds to simulate
