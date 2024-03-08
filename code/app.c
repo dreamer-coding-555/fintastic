@@ -113,6 +113,15 @@ void play_story_mode() {
     // Add your story-related functionality
 }
 
+// Function to handle the view scoreboard option
+void view_scoreboard(ScoreBoard *scoreboard) {
+    fscl_console_clear();
+    fscl_console_out_color("light_cyan", "===== SCOREBOARD =====\n");
+    scoreboard_display(scoreboard);
+    fscl_console_out_color("light_cyan", "======================\n");
+    fscl_console_pause();
+}
+
 // The run_app function is designed to read data from a file named "data.txt"
 // using a custom stream implementation (cstream).
 // Returns EXIT_SUCCESS if the file is read successfully; otherwise, the
@@ -122,15 +131,18 @@ int run_app(int argc, char **argv) {
     char mode_choice[20];
     do {
         fscl_console_out_color("light_cyan", "Choose a mode:\n");
-        fscl_console_out_color("light_cyan", "1. Match Mode\n");
-        fscl_console_out_color("light_cyan", "2. Story Mode\n");
-        fscl_console_out_color("light_cyan", "0. Exit\n");
+        fscl_console_out_color("light_cyan", "match: play a quick match\n");
+        fscl_console_out_color("light_cyan", "story: play story mode\n");
+        fscl_console_out_color("light_cyan", "score: view the scoreboard\n");
+        fscl_console_out_color("light_cyan", "exit : swim away from game\n");
         fscl_console_in_get_line(mode_choice);
 
         if (strcmp(mode_choice, "match") == 0) {
             play_match_mode();
         } else if (strcmp(mode_choice, "story") == 0) {
             play_story_mode();
+        } else if (strcmp(mode_choice, "score") == 0) {
+            view_scoreboard(scoreboard);
         } else if (strcmp(mode_choice, "exit") == 0) {
             fscl_console_out_color("reset", "Goodbye!\n");
         } else {
