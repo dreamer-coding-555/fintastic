@@ -31,6 +31,8 @@ void display_instructions();
 void display_goodbye();
 void display_error();
 void display_loading();
+void display_start_menu();
+void display_weapon_menu();
 
 #ifdef __cplusplus
 }
