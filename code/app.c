@@ -11,22 +11,59 @@ Description:
 ==============================================================================
 */
 #include "app.h"
+#include "match.h"
+#include "display.h"
 
-void play_match_mode(FishPlayer players[MAX_PLAYERS], int num_players, ScoreBoard *scoreboard) {
+void play_match_mode() {
     // Number of rounds to simulate
     int num_rounds = 3; // Adjust as needed
 
+    // Create an array to store players
+    FishPlayer players[MAX_PLAYERS];
+
+    // Create an array to store the scoreboard
+    ScoreBoard *scoreboard = scoreboard_create();
+
+    // Create random lamps for the match
+    match_randomize_lamps(players);
+
     for (int round = 1; round <= num_rounds; round++) {
         display_round(round);
-
-        // Randomize the lava lamp states for the current round
-        match_randomize_lamps(players, num_players);
+        display_weapon_menu();
 
         // Simulate a game round for each player
-        match_play_round(players, num_players, scoreboard);
+        for (int i = 0; i < MAX_PLAYERS; i++) {
+            int weapon_choice;
+            fscl_console_in_valid_input("Choose your weapon (1-3): ", &weapon_choice);
+
+            // Set player move based on the weapon choice
+            switch (weapon_choice) {
+                case 1:
+                    player_set_move(&players[i], "Rock", ROCK);
+                    break;
+                case 2:
+                    player_set_move(&players[i], "Paper", PAPER);
+                    break;
+                case 3:
+                    player_set_move(&players[i], "Scissors", SCISSOR);
+                    break;
+                default:
+                    display_error();
+                    return;
+            }
+        }
+
+        // Display player moves
+        display_player_moves(players, MAX_PLAYERS);
+
+        // Determine the game outcome
+        determine_outcomes(players, MAX_PLAYERS, scoreboard);
+
+        // Display the result
+        display_result(players, MAX_PLAYERS, scoreboard);
 
         // Display the scoreboard at the end of each round
-        display_scoreboard(scoreboard);
+        scoreboard_display(scoreboard);
     }
 
     // Save the final scoreboard to a file
@@ -38,8 +75,6 @@ void play_match_mode(FishPlayer players[MAX_PLAYERS], int num_players, ScoreBoar
 
     // Clean up the scoreboard
     scoreboard_destroy(scoreboard);
-
-    fscl_console_out_color("light_cyan", "===== MATCH ENDED =====\n");
 }
 
 void play_story_mode() {
