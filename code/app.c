@@ -12,54 +12,34 @@ Description:
 */
 #include "app.h"
 
-enum {
-    MIN_PLAYERS = 2,
-    MAX_PLAYERS = 4
-};
-
-void play_match_mode() {
-    // Get the number of players from the user
-    int num_players;
-    fscl_console_in_valid_input("Enter the number of players (2 to 4): ", &num_players);
-
-    // Validate the number of players
-    if (num_players < MIN_PLAYERS || num_players > MAX_PLAYERS) {
-        fscl_console_out_color("light_red", "Invalid number of players. Please choose between 2 and 4.\n");
-        return;
-    }
-
-    // Get the number of human players from the user
-    int num_human_players;
-    fscl_console_in_valid_input("Enter the number of human players (0 to 4): ", &num_human_players);
-
-    // Validate the number of human players
-    if (num_human_players < 0 || num_human_players > num_players) {
-        fscl_console_out_color("light_red", "Invalid number of human players. Please choose between 0 and the total number of players.\n");
-        return;
-    }
-
-    // Create an array to store players
-    FishPlayer players[MAX_PLAYERS];
-
-    // Create an array to store the scoreboard
-    ScoreBoard scoreboard;
-    scoreboard_init(&scoreboard);
-
-    // Initialize players for the match using utility function
-    match_initialize_players(players, num_human_players, num_players);
-
+void play_match_mode(FishPlayer players[MAX_PLAYERS], int num_players, ScoreBoard *scoreboard) {
     // Number of rounds to simulate
     int num_rounds = 3; // Adjust as needed
 
     for (int round = 1; round <= num_rounds; round++) {
         fscl_console_out_color("light_cyan", "===== ROUND %d =====\n", round);
 
-        // Play a round using the utility function
-        match_play_round(players, num_players, &scoreboard);
+        // Randomize the lava lamp states for the current round
+        match_randomize_lamps(players, num_players);
+
+        // Simulate a game round for each player
+        match_play_round(players, num_players, scoreboard);
+
+        // Display the scoreboard at the end of each round
+        display_scoreboard(scoreboard);
     }
 
-    // Save the final scoreboard using the utility function
-    match_save_final_scoreboard(&scoreboard);
+    // Save the final scoreboard to a file
+    cstream stream;
+    if (fscl_stream_open(&stream, "scoreboard.txt", "w")) {
+        scoreboard_save_to_file(&stream, scoreboard);
+        fscl_stream_close(&stream);
+    }
+
+    // Clean up the scoreboard
+    scoreboard_destroy(scoreboard);
+
+    fscl_console_out_color("light_cyan", "===== MATCH ENDED =====\n");
 }
 
 void play_story_mode() {
