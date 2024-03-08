@@ -21,6 +21,10 @@ extern "C" {
 #include <fossil/xutil.h> // base utilities
 #include <fossil/xstring.h> // that string lib
 
+#include "player.h"
+#include "input.h"
+#include "determine.h"
+
 enum {
     APP_ENABLE,
     APP_DISABLE
