@@ -21,17 +21,9 @@ extern "C" {
 #include <fossil/xutil.h> // base utilities
 #include <fossil/xstring.h> // that string lib
 
-#include "player.h"
-#include "scoreboard.h"
-
 void display_intro();
-void display_round(int round_number);
-void display_player_moves(FishPlayer players[MAX_PLAYERS], int num_players);
-void display_result(FishPlayer players[MAX_PLAYERS], int num_players, ScoreBoard *scoreboard);
-void display_instructions();
 void display_goodbye();
 void display_error();
-void display_loading();
 void display_start_menu();
 void display_weapon_menu();
 
