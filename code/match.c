@@ -11,11 +11,17 @@ Description:
 ==============================================================================
 */
 #include "match.h"
+#include "display.h"
 
-void play_match_mode(FishPlayer players[MAX_PLAYERS], ScoreBoard *scoreboard) {
-    // Display match introduction
-    display_intro();
+void match_randomize_lamps(FishPlayer players[MAX_PLAYERS]) {
+    for (int i = 0; i < MAX_PLAYERS; i++) {
+        // Randomly set lamp position and velocity for each player
+        players[i].fish.lamp.position = (double)fscl_lava_random() / (double)RAND_MAX;
+        players[i].fish.lamp.velocity = (double)fscl_lava_random() / (double)RAND_MAX;
+    }
+}
 
+void play_match_mode(FishPlayer players[MAX_PLAYERS]) {
     // Number of rounds to simulate
     int num_rounds = 3; // Adjust as needed
 
@@ -52,10 +58,10 @@ void play_match_mode(FishPlayer players[MAX_PLAYERS], ScoreBoard *scoreboard) {
         display_player_moves(players, MAX_PLAYERS);
 
         // Determine the game outcome
-        determine_outcomes(players, MAX_PLAYERS, scoreboard);
+        determine_outcomes(players, MAX_PLAYERS);
 
         // Display the result
-        display_result(players, MAX_PLAYERS, scoreboard);
+        display_result(players, MAX_PLAYERS);
 
         // Display the scoreboard at the end of each round
         scoreboard_display(scoreboard);
@@ -66,16 +72,5 @@ void play_match_mode(FishPlayer players[MAX_PLAYERS], ScoreBoard *scoreboard) {
     if (fscl_stream_open(&stream, "scoreboard.txt", "w")) {
         scoreboard_save_to_file(&stream, scoreboard);
         fscl_stream_close(&stream);
-    }
-
-    // Display a goodbye message
-    display_goodbye();
-}
-
-void match_randomize_lamps(FishPlayer players[MAX_PLAYERS]) {
-    for (int i = 0; i < MAX_PLAYERS; i++) {
-        // Randomly set lamp position and velocity for each player
-        players[i].lamp.position = (double)fscl_lava_random() / (double)RAND_MAX;
-        players[i].lamp.velocity = (double)fscl_lava_random() / (double)RAND_MAX;
     }
 }
