@@ -13,7 +13,7 @@ Description:
 #include "story.h"
 #include "display.h"
 
-void play_story_mode(FishPlayer players[MAX_PLAYERS]) {
+void story_mode() {
     // Display story introduction
     fscl_console_out_color("light_cyan", "===== STORY MODE =====\n");
 
