@@ -17,7 +17,7 @@ void play_match_mode(FishPlayer players[MAX_PLAYERS], int num_players, ScoreBoar
     int num_rounds = 3; // Adjust as needed
 
     for (int round = 1; round <= num_rounds; round++) {
-        fscl_console_out_color("light_cyan", "===== ROUND %d =====\n", round);
+        display_round(round);
 
         // Randomize the lava lamp states for the current round
         match_randomize_lamps(players, num_players);
@@ -62,7 +62,8 @@ void view_scoreboard(ScoreBoard *scoreboard) {
 // Returns EXIT_SUCCESS if the file is read successfully; otherwise, the
 // behavior is undefined.
 int run_app(int argc, char **argv) {
-    // Attempt to open the file "data.txt" in read-only mode
+    display_intro();
+
     char mode_choice[20];
     do {
         fscl_console_out_color("light_cyan", "Choose a mode:\n");
@@ -79,9 +80,9 @@ int run_app(int argc, char **argv) {
         } else if (strcmp(mode_choice, "score") == 0) {
             view_scoreboard(scoreboard);
         } else if (strcmp(mode_choice, "exit") == 0) {
-            fscl_console_out_color("reset", "Goodbye!\n");
+            display_goodbye();
         } else {
-            fscl_console_out_color("light_red", "Invalid choice. Try again.\n");
+            display_error();
         }
     } while (strcmp(mode_choice, "0") != 0);
 
