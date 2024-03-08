@@ -20,6 +20,7 @@ extern "C" {
 #include <fossil/xcore.h> // core framework
 #include <fossil/xutil.h> // base utilities
 #include <fossil/xstring.h> // that string lib
+#include <fossil/xfish.h>   // the jellyfish AI lib
 
 #include "player.h"
 #include "determine.h"
