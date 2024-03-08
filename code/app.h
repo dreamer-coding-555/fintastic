@@ -24,6 +24,10 @@ extern "C" {
 #include "story.h" // story mode logic
 #include "match.h" // match mode logic
 
+#define MATCH_MODE "match"
+#define STORY_MODE "story"
+#define EXIT_MODE "exit"
+
 enum {
     APP_ENABLE,
     APP_DISABLE
