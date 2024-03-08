@@ -10,8 +10,8 @@ Description:
     feel free to contact Michael at michaelbrockus@gmail.com.
 ==============================================================================
 */
-#ifndef INPUT_H
-#define INPUT_H
+#ifndef MATCH_H
+#define MATCH_H
 
 #ifdef __cplusplus
 extern "C" {
